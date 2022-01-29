@@ -1,0 +1,23 @@
+{
+  "include": ["./index.ts"],
+  "compilerOptions": {
+    /* Target node16 */
+    "lib": ["ES2021"],
+
+    /* esbuild compilation */
+    "noEmit": true,
+    "isolatedModules": true,
+
+    /* Imports */
+    "moduleResolution": "node", // Allow `index` imports
+    "resolveJsonModule": true, // Allow json import
+    "forceConsistentCasingInFileNames": true, // Avoid difference in case between file name and import
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true
+  }
+}
