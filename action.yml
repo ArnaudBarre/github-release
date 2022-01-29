@@ -1,0 +1,10 @@
+name: "GitHub release"
+description: "Generate a GitHub release from CHANGELOG.md"
+runs:
+  using: "node16"
+  main: "index.js"
+inputs:
+  github-token:
+    description: The GitHub token used to create an authenticated client
+    default: ${{ github.token }}
+    required: false
