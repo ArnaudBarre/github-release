@@ -8,9 +8,13 @@ async function run() {
     const root = process.env.GITHUB_WORKSPACE!;
     const { version } = require(join(root, "package.json"));
     const changelog = readFileSync(join(root, "CHANGELOG.md"), "utf-8");
-    const [changelogVersion, ...body] = changelog.split("##")[1].split("\n");
+    const [changelogVersion, ...body] = changelog
+      .split("##")
+      [changelog.includes("\n## Unreleased") ? 2 : 1].split("\n");
     if (changelogVersion.trim() !== version) {
-      core.setFailed(`Changelog version (${changelogVersion}) doesn't match package.json version (${version})`);
+      core.setFailed(
+        `Changelog version (${changelogVersion}) doesn't match package.json version (${version})`
+      );
       return;
     }
     const token = core.getInput("github-token", { required: true });
@@ -19,6 +23,7 @@ async function run() {
       name: `v${version}`,
       tag_name: `v${version}`,
       body: body.join("\n").trim(),
+      prerelease: /\d-[a-z]/.test(version),
     });
     core.info(`Release created: ${data.html_url}`);
   } catch (error) {
