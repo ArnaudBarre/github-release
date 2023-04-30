@@ -2,22 +2,25 @@
   "include": ["./index.ts"],
   "compilerOptions": {
     /* Target node16 */
-    "lib": ["ES2021"],
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "CommonJS",
+    "lib": ["ES2022"],
 
     /* esbuild compilation */
-    "noEmit": true,
+    "moduleResolution": "node16",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
-
-    /* Imports */
-    "moduleResolution": "node", // Allow `index` imports
-    "resolveJsonModule": true, // Allow json import
-    "forceConsistentCasingInFileNames": true, // Avoid difference in case between file name and import
+    "noEmit": true,
 
     /* Linting */
+    "skipDefaultLibCheck": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+    "noPropertyAccessFromIndexSignature": true
   }
 }

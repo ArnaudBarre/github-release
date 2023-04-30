@@ -5,11 +5,11 @@ import * as github from "@actions/github";
 
 async function run() {
   try {
-    const root = process.env.GITHUB_WORKSPACE!;
+    const root = process.env["GITHUB_WORKSPACE"]!;
     const { version } = require(join(root, "package.json"));
     const changelog = readFileSync(join(root, "CHANGELOG.md"), "utf-8");
     const [changelogVersion, ...body] = changelog
-      .split("##")
+      .split("\n## ")
       [changelog.includes("\n## Unreleased") ? 2 : 1].split("\n");
     if (changelogVersion.trim() !== version) {
       core.setFailed(
