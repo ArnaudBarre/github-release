@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0
+
+Add path option (default to `CHANGELOG.md`)
+
 ## 1.2.1
 
 Fix split to avoid issues with h3s

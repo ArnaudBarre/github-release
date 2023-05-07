@@ -7,7 +7,8 @@ async function run() {
   try {
     const root = process.env["GITHUB_WORKSPACE"]!;
     const { version } = require(join(root, "package.json"));
-    const changelog = readFileSync(join(root, "CHANGELOG.md"), "utf-8");
+    const path = core.getInput("path", { required: true });
+    const changelog = readFileSync(join(root, path), "utf-8");
     const [changelogVersion, ...body] = changelog
       .split("\n## ")
       [changelog.includes("\n## Unreleased") ? 2 : 1].split("\n");
