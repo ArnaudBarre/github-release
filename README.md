@@ -22,6 +22,6 @@ Running this action with this file will create a release named `v2.0.0` with the
 
 ```yml
 steps:
-  - uses: actions/checkout@v2
+  - uses: actions/checkout@v3
   - uses: ArnaudBarre/github-release@v1
 ```

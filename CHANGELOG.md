@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0
+
+- Use package.json adjacent to the changelog
+- Support `## 4.0.1 (2023-06-19)` format for h2s
+
 ## 1.3.0
 
 Add path option (default to `CHANGELOG.md`)

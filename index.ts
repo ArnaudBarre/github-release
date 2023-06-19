@@ -1,18 +1,27 @@
 import { readFileSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 
 async function run() {
   try {
     const root = process.env["GITHUB_WORKSPACE"]!;
-    const { version } = require(join(root, "package.json"));
     const path = core.getInput("path", { required: true });
+    const { version } = require(join(
+      dirname(join(root, path)),
+      "package.json"
+    ));
     const changelog = readFileSync(join(root, path), "utf-8");
-    const [changelogVersion, ...body] = changelog
+    const [changelogHeader, ...body] = changelog
       .split("\n## ")
       [changelog.includes("\n## Unreleased") ? 2 : 1].split("\n");
-    if (changelogVersion.trim() !== version) {
+    const changelogVersion = changelogHeader
+      .slice(
+        0,
+        changelogHeader.indexOf("(") // Remove date when h2 is like 4.0.1 (2023-06-19)
+      )
+      .trim();
+    if (changelogVersion !== version) {
       core.setFailed(
         `Changelog version (${changelogVersion}) doesn't match package.json version (${version})`
       );
