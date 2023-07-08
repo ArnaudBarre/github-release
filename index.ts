@@ -15,11 +15,9 @@ async function run() {
     const [changelogHeader, ...body] = changelog
       .split("\n## ")
       [changelog.includes("\n## Unreleased") ? 2 : 1].split("\n");
+    const dateStart = changelogHeader.indexOf("("); // when h2 is like 4.0.1 (2023-06-19)
     const changelogVersion = changelogHeader
-      .slice(
-        0,
-        changelogHeader.indexOf("(") // Remove date when h2 is like 4.0.1 (2023-06-19)
-      )
+      .slice(0, dateStart === -1 ? undefined : dateStart)
       .trim();
     if (changelogVersion !== version) {
       core.setFailed(

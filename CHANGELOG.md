@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+Fix regression for h2 without dates 
+
 ## 1.4.0
 
 - Use package.json adjacent to the changelog
