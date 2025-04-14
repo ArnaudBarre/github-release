@@ -25,3 +25,17 @@ steps:
   - uses: actions/checkout@v3
   - uses: ArnaudBarre/github-release@v1
 ```
+
+## Inputs
+
+```yml
+path:
+  description: Path to the CHANGELOG file
+  default: CHANGELOG.md
+tag-name:  
+  description: The tag name to create
+  default: v{version}
+github-token:
+  description: The GitHub token used to create an authenticated client
+  default: ${{ github.token }}
+```

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- Add tag-name option (default to `v{version}`)
+
 ## 1.4.1
 
 Fix regression for h2 without dates 

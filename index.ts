@@ -26,10 +26,12 @@ async function run() {
       return;
     }
     const token = core.getInput("github-token", { required: true });
+    // getInput returns an empty string if the input is not set
+    const tagName = core.getInput("tag-name") || `v${version}`;
     const { data } = await github.getOctokit(token).rest.repos.createRelease({
       ...github.context.repo,
-      name: `v${version}`,
-      tag_name: `v${version}`,
+      name: tagName,
+      tag_name: tagName,
       body: body.join("\n").trim(),
       prerelease: /\d-[a-z]/.test(version),
     });

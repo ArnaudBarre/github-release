@@ -1,11 +1,10 @@
 {
   "include": ["./index.ts"],
   "compilerOptions": {
-    /* Target node16 */
-    "target": "ES2022",
-    "useDefineForClassFields": true,
+    /* Target node18 */
+    "target": "ES2023",
     "module": "CommonJS",
-    "lib": ["ES2022"],
+    "lib": ["ES2023"],
 
     /* esbuild compilation */
     "moduleResolution": "node16",

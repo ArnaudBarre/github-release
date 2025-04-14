@@ -8,6 +8,9 @@ inputs:
     description: Path to the CHANGELOG file
     default: CHANGELOG.md
     required: false
+  tag-name:
+    description: The name of the created tag
+    required: false
   github-token:
     description: The GitHub token used to create an authenticated client
     default: ${{ github.token }}
